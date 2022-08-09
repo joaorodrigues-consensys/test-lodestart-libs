@@ -1,14 +1,19 @@
-import { ForkName } from '@lodestar/params';
+import * as params from '@lodestar/params';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { AppModule } from './app.module.js';
 
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  // this breaks with:  Error: No "exports" main defined in (...)/node_modules/@lodestar/params/package.json
-  console.log(ForkName.altair)
-  
+  // this works too
+  const p = await import('@lodestar/params')
+  console.log(p.ForkName.altair)
+
+  // fixed:
+  console.log(params.ForkName.altair)
+  const d = await import('@lodestar/state-transition')
+  console.log(d)
   await app.listen(6556);
 }
 bootstrap();
