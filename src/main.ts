@@ -1,6 +1,5 @@
-import * as params from '@lodestar/params';
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module.js';
+import { AppModule } from './app.module';
 
 
 async function bootstrap() {
@@ -11,7 +10,7 @@ async function bootstrap() {
   console.log(p.ForkName.altair)
 
   // fixed:
-  console.log(params.ForkName.altair)
+  // console.log(params.ForkName.altair)
   const d = await import('@lodestar/state-transition')
   console.log(d)
   await app.listen(6556);
